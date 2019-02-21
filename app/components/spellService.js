@@ -31,6 +31,13 @@ function setState(prop, data) {
 
 //public
 export default class SpellService {
+  setActive(url) {
+    _spellApi.get(formatUrl(url))
+      .then(res => {
+        let data = new Spell(res.data)
+        setState('activeSpell', data)
+      })
+  }
   addSubscriber(prop, fn) {
     _subscribers[prop].push(fn)
   }
