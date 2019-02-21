@@ -31,6 +31,10 @@ function setState(prop, data) {
 
 //public
 export default class SpellService {
+  learnSpell() {
+    _state.mySpells.push(_state.activeSpell)
+    setState('mySpells', _state.mySpells)
+  }
   setActive(url) {
     _spellApi.get(formatUrl(url))
       .then(res => {
@@ -44,6 +48,12 @@ export default class SpellService {
 
   get ApiSpells() {
     return _state.apiSpells.map(s => new Spell(s))
+  }
+  get ActiveSpell() {
+    return _state.activeSpell
+  }
+  get MySpells() {
+    return _state.mySpells
   }
 
   getApiSpells() {
