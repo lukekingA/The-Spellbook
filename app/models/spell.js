@@ -8,4 +8,9 @@ export default class Spell {
     this.index = data.index
     this.url = data.url
   }
+  getTemplate() {
+    return `
+    <li onclick="app.controllers.spellController.setActive('${this.url}')">${this.name}</li>
+    `
+  }
 }

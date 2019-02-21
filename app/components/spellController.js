@@ -10,5 +10,6 @@ let _ss = new SpellService()
 export default class SpellController {
   constructor() {
     _ss.addSubscriber('apiSpells', drawList)
+    _ss.getApiSpells()
   }
 }
