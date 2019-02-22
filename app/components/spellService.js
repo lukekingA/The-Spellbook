@@ -40,7 +40,10 @@ export default class SpellService {
     if (!compare.length) {
       _sandbox.post('', _state.activeSpell).then(res => {
         this.getMyApiSpells()
-      })
+      }).catch(err => console.log(err))
+      if (document.documentElement.scrollTop > 200) {
+        document.documentElement.scrollTop = 0
+      }
     }
 
   }
@@ -49,10 +52,8 @@ export default class SpellService {
       .then(res => {
         let data = new Spell(res.data)
         setState('activeSpell', data)
-      })
-    // if (document.documentElement.scrollTop > 200) {
-    //   document.documentElement.scrollTop = 0
-    // }
+      }).catch(err => console.log(err))
+
   }
   addSubscriber(prop, fn) {
     _subscribers[prop].push(fn)

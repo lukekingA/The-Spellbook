@@ -46,8 +46,9 @@ export default class SpellController {
     _ss.setActive(url)
   }
 
-  learnSpell() {
+  learnSpell(id) {
     _ss.learnSpell()
+    this.dismiss(id)
   }
 
   delMySpell(id) {

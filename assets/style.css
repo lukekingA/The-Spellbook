@@ -25,6 +25,7 @@ li {
 .pos-stk {
   position: fixed;
   max-width: 400px;
+  max-height: 75vh;
   margin-right: calc(-50vw + (-200px));
   right: 100vw;
   top: 75px;
