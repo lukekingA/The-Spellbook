@@ -19,14 +19,17 @@ export default class Spell {
 
   getDetails() {
     return `
-    <div class="card text-dark w-sm-50">
+    <div id="${this._id}" class="card text-dark d-flex flex-column align-items-center pos-stk py-3">
     <div class="card-title text-center">
     <h3>${this.name}</h3>
   </div>
   <div class="card-body">
     <p class="overflow">${this.description}</p>
   </div>
-  <button onclick="app.controllers.spellController.learnSpell()">Learn</button>
+  <div class="d-flex justify-content-around w-100">
+  <button class="btn-width btn btn-dark text-light" onclick="app.controllers.spellController.learnSpell()">Learn</button>
+  <button class="btn btn-dark text-light" onclick="app.controllers.spellController.dismiss('${this._id}')">&times;</button>
+  </div>
 </div>`
 
   }

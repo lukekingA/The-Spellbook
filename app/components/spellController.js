@@ -53,4 +53,9 @@ export default class SpellController {
   delMySpell(id) {
     _ss.delMySpell(id)
   }
+
+  dismiss(id) {
+    let card = document.getElementById(id)
+    card.parentElement.removeChild(card)
+  }
 }

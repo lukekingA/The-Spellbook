@@ -17,3 +17,16 @@ li {
   overflow: auto;
   height: 6rem;
 }
+
+.btn-width {
+  max-width: 75%;
+}
+
+.pos-stk {
+  position: fixed;
+  max-width: 400px;
+  margin-right: calc(-50vw + (-200px));
+  right: 100vw;
+  top: 75px;
+  z-index: 999;
+}

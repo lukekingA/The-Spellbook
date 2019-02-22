@@ -50,6 +50,9 @@ export default class SpellService {
         let data = new Spell(res.data)
         setState('activeSpell', data)
       })
+    // if (document.documentElement.scrollTop > 200) {
+    //   document.documentElement.scrollTop = 0
+    // }
   }
   addSubscriber(prop, fn) {
     _subscribers[prop].push(fn)
