@@ -19,11 +19,16 @@ function drawActive() {
   document.getElementById('active-spell').innerHTML = template
 }
 
+function activDel() {
+
+}
+
 function drawMySpells() {
   let mySpells = _ss.MySpells
   let template = ''
   mySpells.forEach(s => {
-    template += s.getTemplate()
+    let button = `<i onclick="app.controllers.spellController.delMySpell('${s._id}')" class="fas fa-trash-alt"></i>`
+    template += s.getTemplate(button)
   })
   document.getElementById('my-spells').innerHTML = template
 }
@@ -35,6 +40,7 @@ export default class SpellController {
     _ss.addSubscriber('activeSpell', drawActive)
     _ss.addSubscriber('mySpells', drawMySpells)
     _ss.getApiSpells()
+    _ss.getMyApiSpells()
   }
   setActive(url) {
     _ss.setActive(url)
@@ -42,5 +48,9 @@ export default class SpellController {
 
   learnSpell() {
     _ss.learnSpell()
+  }
+
+  delMySpell(id) {
+    _ss.delMySpell(id)
   }
 }

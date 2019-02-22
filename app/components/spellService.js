@@ -1,16 +1,19 @@
 import Spell from "../models/spell.js";
 
 //private
+
 function formatUrl(url) {
   return '//bcw-getter.herokuapp.com/?url=' + encodeURIComponent(url)
 }
-
+//http: //www.dnd5eapi.co/api/spells/
 // @ts-ignore
 let _spellApi = axios.create({
   baseURL: ''
 })
 
-let _sandbox = {}
+let _sandbox = axios.create({
+  baseURL: 'https://bcw-sandbox.herokuapp.com/api/Lukea/spells/'
+})
 
 let _state = {
   apiSpells: [],
@@ -31,9 +34,15 @@ function setState(prop, data) {
 
 //public
 export default class SpellService {
+
   learnSpell() {
-    _state.mySpells.push(_state.activeSpell)
-    setState('mySpells', _state.mySpells)
+    let compare = _state.mySpells.filter(s => s.index == _state.activeSpell.index)
+    if (!compare.length) {
+      _sandbox.post('', _state.activeSpell).then(res => {
+        this.getMyApiSpells()
+      })
+    }
+
   }
   setActive(url) {
     _spellApi.get(formatUrl(url))
@@ -53,7 +62,7 @@ export default class SpellService {
     return _state.activeSpell
   }
   get MySpells() {
-    return _state.mySpells
+    return _state.mySpells.map(s => new Spell(s))
   }
 
   getApiSpells() {
@@ -65,5 +74,19 @@ export default class SpellService {
       .catch(err => console.error(err))
   }
 
+  getMyApiSpells() {
+    _sandbox.get().then(res => {
+      let data = res.data.data
+      setState('mySpells', data)
+    }).catch(err => console.log(err))
+  }
+
+  delMySpell(id) {
+    _sandbox.delete(id).then(res => {
+      this.getMyApiSpells()
+    })
+  }
 
 }
+//
+//

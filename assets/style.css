@@ -1,0 +1,19 @@
+html,
+body {
+  font-family: 'Amatic SC',
+    cursive;
+  font-size: 1.25rem;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.overflow {
+  overflow: auto;
+  height: 6rem;
+}
