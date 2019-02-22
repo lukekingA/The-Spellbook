@@ -19,7 +19,7 @@ export default class Spell {
 
   getDetails() {
     return `
-    <div class="card text-dark">
+    <div class="card text-dark w-sm-50">
     <div class="card-title text-center">
     <h3>${this.name}</h3>
   </div>
